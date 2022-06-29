@@ -18,17 +18,17 @@ class ProductCreate(SuccessMessageMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('product_list')
-    success_message = "Product successfully created!"
+    success_message = "Experiment successfully created!"
 
 class ProductUpdate(SuccessMessageMixin, UpdateView): 
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('product_list')
-    success_message = "Product successfully updated!"
+    success_message = "Experiment successfully updated!"
 
 class ProductDelete(SuccessMessageMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('product_list')
-    success_message = "Product successfully deleted!"
+    success_message = "Experiment successfully deleted!"
 
 
