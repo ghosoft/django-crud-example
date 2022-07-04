@@ -12,6 +12,9 @@ class ProductForm(forms.ModelForm):
         self.fields['description'].widget.attrs = {
             'class': 'form-control col-md-6'
         }
+        self.fields['start_time'].widget.attrs = {
+            'class': 'form-control col-md-6'
+        }
         self.fields['duration'].widget.attrs = {
             'class': 'form-control col-md-6',
             'step': 'any',
@@ -20,4 +23,4 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('name', 'description', 'duration')
+        fields = ('name', 'description', 'start_time', 'duration')

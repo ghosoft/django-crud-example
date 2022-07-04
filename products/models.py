@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+import django.utils.timezone as timezone
 
 class Product(models.Model):
     name = models.CharField('Name', max_length=100)
     description = models.TextField('Description', blank=True)
-    start_time = models.DateTimeField('Start Time', null=True)
+    start_time = models.DateTimeField('Start Time', null=True, default = timezone.now)
     duration = models.DecimalField('Duration', decimal_places=1, max_digits=8)
     created = models.DateTimeField('Created', auto_now_add=True)
     changed = models.DateTimeField('Changed', auto_now=True)

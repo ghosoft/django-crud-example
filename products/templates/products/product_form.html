@@ -1,7 +1,7 @@
 {% extends 'products/base.html' %}
 
 {% block content %}
-    <h1 class="my-4">{% if request.path == '/new' %} New Product {% else %} Edit - {% endif %}
+    <h1 class="my-4">{% if request.path == '/new' %} New Expriment {% else %} Edit - {% endif %}
         {% if request.path != '/new' %}<small>{{ product.name }}</small>{% endif %}
     </h1>
     <div class="row">
