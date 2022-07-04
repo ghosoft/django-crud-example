@@ -4,7 +4,7 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField('Name', max_length=100)
     description = models.TextField('Description', blank=True)
-    start_time = models.DateTimeField('Start Time', auto_now_add=True)
+    start_time = models.DateTimeField('Start Time', null=True)
     duration = models.DecimalField('Duration', decimal_places=1, max_digits=8)
     created = models.DateTimeField('Created', auto_now_add=True)
     changed = models.DateTimeField('Changed', auto_now=True)
