@@ -9,7 +9,12 @@ from .models import Product
 from .forms import ProductForm
 
 class ProductList(ListView): 
+    paginate_by = 10
     model = Product
+    def get_queryset(self, *args, **kwargs):
+        qs = super(ProductList, self).get_queryset(*args, **kwargs)
+        qs = qs.order_by("id")
+        return qs
 
 class ProductDetail(DetailView): 
     model = Product

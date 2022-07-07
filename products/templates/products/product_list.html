@@ -1,50 +1,77 @@
 {% extends 'products/base.html' %}
 
 {% block content %}
-    <h1 class="my-4">
-        <small>Experiment List</small>
-    </h1>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-    <div class="row">
+<h1 class="my-4">
+    <small>Experiment List</small>
+</h1>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="row">
     {% if object_list %}
-        <div class="col-12" style="overflow-x: scroll">
-            <table class="table">
-              <thead class="thead-dark">
+    <div class="col-12" style="overflow-x: scroll">
+        <table class="table">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
-		    <th scope="col">Start Time</th>
-		    <th scope="col">Duration</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Time Left</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Person</th>
                     <th scope="col">View</th>
                     <th scope="col">Delete</th>
                 </tr>
-              </thead>
-              <tbody>
+            </thead>
+            <tbody>
                 {% for product in object_list %}
                 <tr>
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
-		    <td>{{ product.start_time|date:"Y-m-d H:i:s" }}</td>
-		    <td>{{ product.duration }}</td>
+                    <td>{{ product.start_time|date:"Y-m-d H:i:s" }}</td>
+                    <td>{{ product.duration }}</td>
+                    <td>{{ product.get_time_left }}</td>
+                    <td>{{ product.count }}</td>
+                    <td>{{ product.department }}</td>
+                    <td>{{ product.person }}</td>
                     <td><a href="{% url 'product_view' product.id %}"><button type="button" class="btn btn-outline-primary btn-sm">View</button></a></td>
                     <td><a href="{% url 'product_delete' product.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a></td>
                 </tr>
                 {% endfor %}
-              </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            <a class="btn btn-outline-info btn-md" href="?page=1">&laquo; first</a>
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info btn-md" href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-info btn-md" href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+            <a class="btn btn-outline-info btn-md" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            
+        </span>
+    </div>
     {% else %}
     <div class="col-12">
         <div class="alert alert-warning" role="alert">
-            There is no experiment, yet. But if you want, you can add from <a class="badge badge-info" href="{% url 'product_new' %}"><strong>here.</strong></a>
+            There is no experiment, yet. But if you want, you can add from <a class="badge badge-info"
+                href="{% url 'product_new' %}"><strong>here.</strong></a>
         </div>
     </div>
     {% endif %}
-    </div>
+</div>
 {% endblock %}

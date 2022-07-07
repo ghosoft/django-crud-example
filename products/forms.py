@@ -20,7 +20,16 @@ class ProductForm(forms.ModelForm):
             'step': 'any',
             'min': '1',
         }
+        self.fields['count'].widget.attrs = {
+            'class': 'form-control col-md-6'
+        }
+        self.fields['department'].widget.attrs = {
+            'class': 'form-control col-md-6'
+        }
+        self.fields['person'].widget.attrs = {
+            'class': 'form-control col-md-6'
+        }
 
     class Meta:
         model = Product
-        fields = ('name', 'description', 'start_time', 'duration')
+        fields = ('name', 'description', 'start_time', 'duration', 'count', 'department', 'person')
